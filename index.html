@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Renderizando Markdown</title>
+
+    <!-- Incluindo a biblioteca marked.js -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+    <!-- Adicionando um pouco de CSS para estilizar o Markdown -->
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+      }
+      h1,
+      h2,
+      h3 {
+        color: #333;
+      }
+      code {
+        background-color: #f4f4f4;
+        padding: 2px 4px;
+        border-radius: 4px;
+      }
+      pre {
+        background-color: #f4f4f4;
+        padding: 10px;
+        border-radius: 4px;
+      }
+      ul {
+        list-style: disc;
+        margin-left: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Conteúdo do Markdown Renderizado</h1>
+    <div id="markdown-content"></div>
+
+    <script defer src="script.js"></script>
+  </body>
+</html>
