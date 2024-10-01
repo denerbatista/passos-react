@@ -35,7 +35,7 @@ Substitua o conteúdo do arquivo `index.ts` na pasta `Main` pelo seguinte códig
 
 ```tsx
 import React from "react";
-import "./Main.css";
+import "./style.css";
 
 type Props = {
   children: React.ReactNode;
@@ -58,7 +58,7 @@ Na pasta `MainHome`, crie um arquivo `index.ts` e adicione o seguinte código:
 
 ```tsx
 import React from "react";
-import "./Main.css";
+import "./style.css";
 import Main from "../Main";
 
 const MainHome: React.FC = () => {
@@ -99,6 +99,48 @@ export default Home;
 - **Ao renomear os arquivos no VSCode**, uma mensagem aparecerá perguntando se deseja **atualizar as importações automaticamente**.
   - **É muito importante que você clique em "Aceitar"**. Isso garantirá que todas as importações dos componentes `Header`, `Main`, `MainHome` e `Home` sejam automaticamente ajustadas para refletir as alterações feitas.
 
+### 8. Modificar o arquivo `App.tsx`
+- No diretório `src`, encontre o arquivo `App.tsx` e substitua seu conteúdo pelo seguinte código:
+
+```tsx
+import React from "react";
+import Home from "./pages/Home";
+
+const App: React.FC = () => {
+  return (
+    <>
+      <Home />
+    </>
+  );
+};
+
+export default App;
+```
+
+### 9. Rodar o comando no terminal
+- Abra o terminal no diretório raiz do seu projeto.
+- Execute o seguinte comando para iniciar o servidor de desenvolvimento:
+
+```bash
+yarn dev
+```
+
+### 10. Verificar o funcionamento no terminal
+- Após rodar o comando, o terminal deve exibir algo assim:
+
+```bash
+VITE v5.4.3  ready in 803 ms
+
+  ➜  Local:   http://localhost:5173/
+  ➜  Network: use --host to expose
+  ➜  press h + enter to show help
+```
+
+- **Segure \`Ctrl\` e clique no link** \`http://localhost:5173/\` para abrir a aplicação no navegador.
+
+### 11. Verificar no navegador
+- Verifique se a página `Home` está sendo exibida corretamente com o `Header` e o `MainHome`.
+
 ### Estrutura final
 
 Após seguir os passos, a estrutura dos componentes e páginas ficará assim:
@@ -124,4 +166,3 @@ src/
 Agora, os componentes `Header`, `Main`, `MainHome` e a página `Home` estão organizados de forma eficiente e prontos para serem reutilizados.
 
 ---
-
