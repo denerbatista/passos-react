@@ -18,20 +18,20 @@ Os **componentes comuns** são unidades reutilizáveis da interface que podem se
 - Crie duas novas pastas chamadas `Header` e `Main`.
 
 ### 2. Mover arquivos para as respectivas pastas
-- Mova os arquivos `Header.ts` e `Header.css` para dentro da pasta `Header`.
-- Mova os arquivos `Main.ts` e `Main.css` para dentro da pasta `Main`.
+- Mova os arquivos `Header.tsx` e `Header.css` para dentro da pasta `Header`.
+- Mova os arquivos `Main.tsx` e `Main.css` para dentro da pasta `Main`.
 
 ### 3. Renomear os arquivos
 - Dentro da pasta `Header`, renomeie os seguintes arquivos:
-  - `Header.ts` para `index.ts`.
+  - `Header.tsx` para `index.tsx`.
   - `Header.css` para `style.css`.
 
 - Dentro da pasta `Main`, renomeie os seguintes arquivos:
-  - `Main.ts` para `index.ts`.
+  - `Main.tsx` para `index.tsx`.
   - `Main.css` para `style.css`.
 
-### 4. Alterar o conteúdo do `index.ts` na pasta `Main`
-Substitua o conteúdo do arquivo `index.ts` na pasta `Main` pelo seguinte código para tornar o componente reutilizável:
+### 4. Alterar o conteúdo do `index.tsx` na pasta `Main`
+Substitua o conteúdo do arquivo `index.tsx` na pasta `Main` pelo seguinte código para tornar o componente reutilizável:
 
 ```tsx
 import React from "react";
@@ -54,7 +54,7 @@ export default Main;
 ```
 
 ### 5. Criar o novo componente `MainHome`
-Na pasta `MainHome`, crie um arquivo `index.ts` e adicione o seguinte código:
+Na pasta `MainHome`, crie um arquivo `index.tsx` e adicione o seguinte código:
 
 ```tsx
 import React from "react";
@@ -76,7 +76,7 @@ export default MainHome;
 
 ### 6. Criar a pasta `pages` e o componente `Home`
 - Dentro do diretório `src`, crie uma nova pasta chamada `pages`.
-- Dentro da pasta `pages`, crie uma pasta chamada `Home` e um arquivo `index.ts` com o seguinte conteúdo:
+- Dentro da pasta `pages`, crie uma pasta chamada `Home` e um arquivo `index.tsx` com o seguinte conteúdo:
 
 ```tsx
 import React from "react";
@@ -99,8 +99,8 @@ export default Home;
 - **Ao renomear os arquivos no VSCode**, uma mensagem aparecerá perguntando se deseja **atualizar as importações automaticamente**.
   - **É muito importante que você clique em "Aceitar"**. Isso garantirá que todas as importações dos componentes `Header`, `Main`, `MainHome` e `Home` sejam automaticamente ajustadas para refletir as alterações feitas.
 
-### 8. Modificar o arquivo `App.tsx`
-- No diretório `src`, encontre o arquivo `App.tsx` e substitua seu conteúdo pelo seguinte código:
+### 8. Modificar o arquivo `App.tsxx`
+- No diretório `src`, encontre o arquivo `App.tsxx` e substitua seu conteúdo pelo seguinte código:
 
 ```tsx
 import React from "react";
@@ -150,17 +150,17 @@ src/
 │
 └───components/
 │   └───Header/
-│   │   │   index.ts
+│   │   │   index.tsx
 │   │   │   style.css
 │   └───Main/
-│   │   │   index.ts
+│   │   │   index.tsx
 │   │   │   style.css
 │   └───MainHome/
-│       │   index.ts
+│       │   index.tsx
 │
 └───pages/
     └───Home/
-        │   index.ts
+        │   index.tsx
 ```
 
 Agora, os componentes `Header`, `Main`, `MainHome` e a página `Home` estão organizados de forma eficiente e prontos para serem reutilizados.
