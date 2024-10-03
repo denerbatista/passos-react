@@ -1,0 +1,270 @@
+
+# Implementação de Modal de Navegação e Integração com React Router DOM
+
+Neste tutorial, vamos integrar o React Router DOM ao projeto, criar um modal de navegação e configurar o estado do modal para interagir com as páginas `Home` e `Utility`.
+
+## Passo a Passo
+
+### 1. Instalar o React Router DOM
+
+Abra o terminal no diretório raiz do seu projeto e execute o seguinte comando para instalar o React Router DOM:
+
+```bash
+yarn add react-router-dom
+```
+
+### 2. Criar o componente `ModalNavigation`
+
+Crie o componente `ModalNavigation` dentro da pasta `components` com o arquivo `index.tsx` e `style.css`.
+
+#### Arquivo `index.tsx`:
+
+```tsx
+import { Link } from "react-router-dom";
+import "./style.css";
+import { IModalProps } from "../../interfaces";
+
+const ModalNavigation = ({ isOpen, onClose }: IModalProps) => {
+  if (!isOpen) {
+    return null;
+  }
+
+  return (
+    <div className="modal-overlay">
+      <div className="modal-content">
+        <span onClick={onClose}>❌</span>
+        <ul className="navigation-list">
+          <li className="option-navigation">
+            <Link to="/utility" onClick={onClose}>Serviços</Link>
+          </li>
+          <li className="option-navigation">
+            <Link to="/" onClick={onClose}>Home</Link>
+          </li>
+        </ul>
+      </div>
+    </div>
+  );
+};
+
+export default ModalNavigation;
+```
+
+#### Arquivo `style.css`:
+
+```css
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+}
+
+.modal-content {
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.modal-content > span {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  cursor: pointer;
+  padding: 1rem;
+
+  &:hover {
+    scale: 1.1;
+  }
+}
+
+@media (max-width: 768px) {
+  .modal-content {
+    width: 95vw;
+    height: 100vh;
+  }
+}
+
+@media (min-width: 769px) {
+  .modal-content {
+    width: 25vw;
+    height: 100vh;
+  }
+}
+
+.navigation-list {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.navigation-list li {
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+.navigation-list li a {
+  text-decoration: none;
+  color: #000;
+  display: block;
+  border-radius: 0.5rem;
+  transition: background-color 0.3s ease;
+}
+
+.navigation-list li a:hover {
+  background-color: #007bff;
+  color: #fff;
+}
+```
+
+### 3. Modificar o componente `Header`
+
+Modifique o componente `Header` para utilizar o modal de navegação.
+
+#### Arquivo `Header.tsx`:
+
+```tsx
+import "./style.css";
+import { IHeaderProps } from "../../interfaces";
+import ModalNavigation from "../ModalNavigation";
+
+const Header = ({ isOpen, onClose }: IHeaderProps) => {
+
+  return (
+    <header className="header">
+      <img className="logo" src="src/assets/logo.jpg" />
+      <h2 className="menu-hamburger" onClick={onClose}>
+        ☰
+      </h2>
+      <ModalNavigation isOpen={isOpen} onClose={onClose}/>
+    </header>
+  );
+};
+
+export default Header;
+```
+
+### 4. Modificar a página `Home`
+
+Modifique a página `Home` para integrar o novo estado de abertura/fechamento do modal.
+
+#### Arquivo `Home.tsx`:
+
+```tsx
+import Header from "../../components/Header";
+import MainHome from "../../components/MainHome";
+import { IHeaderProps } from "../../interfaces";
+
+const Home = ({ isOpen, setIsOpen, onClose }: IHeaderProps) => {
+  return (
+    <>
+      <Header isOpen={isOpen} setIsOpen={setIsOpen} onClose={onClose} />
+      <MainHome />
+    </>
+  );
+};
+
+export default Home;
+```
+
+### 5. Modificar a página `Utility`
+
+Modifique a página `Utility` para também utilizar o novo estado do modal.
+
+#### Arquivo `Utility.tsx`:
+
+```tsx
+import Header from "../../components/Header";
+import Main from "../../components/Main";
+import Card from "../../components/Card";
+import { IHeaderProps } from "../../interfaces";
+
+const Utility = ({ isOpen, setIsOpen, onClose }: IHeaderProps) => {
+  return (
+    <>
+      <Header isOpen={isOpen} setIsOpen={setIsOpen} onClose={onClose} />
+      <Main>
+        <Card />
+      </Main>
+    </>
+  );
+};
+
+export default Utility;
+```
+
+### 6. Modificar o arquivo `App.tsx`
+
+Finalmente, modifique o arquivo `App.tsx` para integrar o estado de abertura e fechamento do modal.
+
+#### Arquivo `App.tsx`:
+
+```tsx
+import React, { useState } from "react";
+import { HashRouter as Router, Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import Utility from "./pages/Utility";
+
+const App: React.FC = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const onClose = () => {
+    setIsOpen(!isOpen);
+  };
+
+  return (
+    <Router>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <Home isOpen={isOpen} setIsOpen={setIsOpen} onClose={onClose} />
+          }
+        />
+        <Route
+          path="/utility"
+          element={
+            <Utility isOpen={isOpen} setIsOpen={setIsOpen} onClose={onClose} />
+          }
+        />
+      </Routes>
+    </Router>
+  );
+};
+
+export default App;
+```
+
+### 7. Criar a pasta `interfaces`
+
+Dentro da pasta `src`, crie a pasta `interfaces` e adicione o seguinte arquivo `index.ts` para definir as interfaces utilizadas no projeto.
+
+#### Arquivo `index.ts`:
+
+```ts
+export interface IModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+}
+
+export interface IHeaderProps {
+  isOpen: boolean;
+  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  onClose: () => void;
+}
+```
+
+---
+
+Com esses passos, você terá um modal de navegação completamente funcional, com integração ao React Router DOM e responsivo para diferentes tamanhos de tela.
