@@ -2,21 +2,21 @@
 
 ## Passo 1: Abra o visual Studio Code clique em file e open Folder e abra a pasta projetos:
 
-![](./passo%201.png)
+![Passo 1](./passo%201.png)
 
-![](./passo%201.2.png)
+![Passo 1.2](./passo%201.2.png)
 
 ## Passo 2: Abra o terminal com o atalho Ctrl + “  e  digite o seguinte comando:
 
-![](./passo%202.png)
+![Passo 2](./passo%202.png)
 
 ### Com as setas do teclado escolha React:
 
-![](./passo%202.2.png)
+![Passo 2.1](./passo%202.2.png)
 
 ### Depois Typscript:
 
-![](./passo%202.3.png)
+![Passo 2.2](./passo%202.3.png)
 
 ## Passo 3: Estrutura Inicial de Componentes
 
